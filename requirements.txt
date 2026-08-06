@@ -1,0 +1,22 @@
+# ============================================================
+# AFAC2026 依赖清单
+# 安装：pip install -r requirements.txt
+# ============================================================
+
+# ---- Agent 运行必需 ----
+dashscope>=1.0.0            # 阿里云百炼 LLM 调用
+jieba>=0.40.0               # 中文分词（检索与查询拆解）
+python-dotenv>=1.0.0        # .env 环境变量加载
+pyyaml>=6.0                 # config.yaml 配置加载
+requests>=2.25.0
+
+# ---- 数据预处理可选 ----
+pypdf>=4.0.0                # PDF 文本提取
+pdfplumber>=0.10.0          # PDF 章节树解析（document_parser）
+
+# ---- 实验性检索路径（hybrid / milvus）可选 ----
+pymilvus>=2.4.0
+milvus-lite>=3.0
+
+# ---- 测试 ----
+pytest>=7.0.0

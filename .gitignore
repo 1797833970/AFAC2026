@@ -1,0 +1,61 @@
+# ============================================================
+# AFAC2026 项目 .gitignore
+# 原则：仓库只保留「源代码 + 文档 + 小体积官方文件」，
+#       大数据集与运行产物一律不纳入版本控制。
+# ============================================================
+
+# ---- 敏感信息（含 API Key，切勿提交） ----
+.env
+.env.local
+.env.*.local
+
+# ---- 虚拟环境 ----
+.venv/
+venv/
+env/
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---- 官方原始数据（体积大，从赛题页面自行下载，见 docs/03） ----
+data/raw/
+
+# ---- 生成产物（均可通过脚本重新生成） ----
+data/index/
+data/chunks/
+data/processed_md/
+data/processed/
+data/temp/
+full_text/
+output/
+results/
+
+# ---- 提交产物 ----
+submit_b.csv
+submit_a.csv
+*.submit.csv
+
+# ---- IDE / 编辑器 / 系统 ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+*.bak
+*.orig
+
+# ---- 本地 AI 协作目录（保留在本地，不随仓库发布） ----
+.agents/
+.claude/
+.uploads/
+.codex/
+.codex-runs/
+.kimi/
+.gemini/
