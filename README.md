@@ -10,7 +10,7 @@ AFAC2026 赛道四的完整参赛项目：面向保险条款、监管法规、�
 - **计算题两轮作答**：先让 LLM 生成 Python 计算代码并沙箱执行，再据结果作答，大幅降低算错概率
 - **增强 BM25 检索**：jieba 细粒度分词 + 字符 Bigram + 精确子串三重打分，金融术语精确匹配，零 API 成本
 - **Token 全程记账**：每一步记录 input/output tokens，提交前即可预估 TokenScore
-- **完整工程化**：`config` 集中配置、`scripts` 统一入口、`tests` 离线冒烟测试、`docs` 七篇教学文档
+- **完整工程化**：`config` 集中配置、`scripts` 统一入口、`docs` 七篇教学文档
 - **官方格式一键提交**：生成带 `summary` 行的标准 CSV，自动拆分多值答案、校验格式
 
 ## 快速开始
@@ -40,12 +40,6 @@ python scripts/build_index.py search "身故保险金如何计算"
 python scripts/run_agent.py --split B --domain insurance --limit 3   # 小批量联调
 python scripts/run_agent.py --split B --workers 5                    # 全量 100 题
 python scripts/build_submission.py --answers output/answers.json --out output/submission.csv
-```
-
-离线测试（无需网络 / API Key）：
-
-```bash
-python -m pytest tests/ -v
 ```
 
 ## 项目结构
@@ -84,8 +78,6 @@ AFAC2026/
 ├── config/
 │   └── config.yaml           # 项目配置（模型/路径/参数）
 ├── docs/                     # 七篇教学文档（见下）
-├── tests/
-│   └── test_smoke.py         # 离线冒烟测试
 ├── data/
 │   ├── README.md             # 数据目录说明
 │   └── upload_b/             # 官方 B 榜题目 + 提交模板

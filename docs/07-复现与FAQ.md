@@ -39,17 +39,7 @@ python scripts/run_agent.py --split B
 python scripts/build_submission.py --answers output/answers.json --out output/submission.csv
 ```
 
-## 7.2 离线冒烟测试
-
-仓库自带不依赖网络和 API Key 的测试：
-
-```bash
-python -m pytest tests/ -v
-```
-
-覆盖：BM25 小语料检索、答案格式化、Markdown 分块、提交 CSV 构建、官方题目 schema。
-
-## 7.3 FAQ
+## 7.2 FAQ
 
 ### Q1：`check_env.py` 提示缺少分块文件怎么办？
 
@@ -77,7 +67,7 @@ python -m pytest tests/ -v
 
 ### Q7：`.env` 会不小心提交吗？
 
-不会。`.gitignore` 已排除 `.env`。提交前可用 `git status` 复核，**泄露 API Key 的补救方式是立刻在百炼控制台吊销重建**。
+不会。`.gitignore` 已排除 `.env`，仓库只提供 `.env.example` 模板；首次使用复制模板填写即可。
 
 ### Q8：为什么 `data/raw/`、`data/index/` 不在仓库里？
 
@@ -87,7 +77,7 @@ python -m pytest tests/ -v
 
 不要。官方格式只有 8 列，`reasoning` 只用于本地审计（`--with-reasoning`）。
 
-## 7.4 已知限制
+## 7.3 已知限制
 
 | 项目 | 说明 |
 |------|------|
