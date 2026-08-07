@@ -4,24 +4,13 @@ AFAC2026 赛道四的完整参赛项目：面向保险条款、监管法规、�
 
 代码与文档均为原创。数据版权归赛题方所有，官方文件（B 榜题目、提交模板）随项目提供，原始数据集需自行从赛题页面下载。
 
-## 给谁看 · 5 分钟体验
-
-- **刚接触 RAG**：先跑下面的零配置 demo，再看 [00-RAG入门](docs/00-RAG入门.md)，5 分钟建立画面感
-- **想学检索 / Agent 工程**：从 [04-检索系统](docs/04-检索系统.md)、[05-Agent流水线](docs/05-Agent流水线.md) 看设计与实现
-- **想复现参赛方案**：按 [07-复现](docs/07-复现.md) 从零跑通
-
-```bash
-# 零配置、零 API、零下载：30 秒看完"分块 → 索引 → 检索"最小流程
-python examples/rag_mini_demo.py
-```
-
 ## 特性
 
 - **五阶段问答流程**：题目类型分析、检索文档锁定、BM25 召回、证据压缩、综合作答，各步骤独立模块、可单独调试
 - **计算题两轮作答**：先让 LLM 生成 Python 计算代码并沙箱执行，再据结果作答，大幅降低算错概率
 - **增强 BM25 检索**：jieba 细粒度分词 + 字符 Bigram + 精确子串三重打分，金融术语精确匹配，零 API 成本
 - **Token 全程记账**：每一步记录 input/output tokens，提交前即可预估 TokenScore
-- **完整工程化**：`config` 集中配置、`scripts` 统一入口、`docs` 七篇教学文档
+- **完整工程化**：`config` 集中配置、`scripts` 统一入口、`docs` 文档与示例
 - **官方格式一键提交**：生成带 `summary` 行的标准 CSV，自动拆分多值答案、校验格式
 
 ## 快速开始
@@ -32,6 +21,9 @@ cd AFAC2026
 python -m venv .venv
 source .venv/bin/activate            # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
+
+# 先跑个 30 秒的最小示例（无需数据/API Key）
+python examples/rag_mini_demo.py
 
 cp .env.example .env                 # 填入 DASHSCOPE_API_KEY
 python scripts/check_env.py          # 环境自检
@@ -112,17 +104,6 @@ flowchart TD
 ```
 
 核心思路：赛题给定了 `doc_ids` 候选文档，范围很小，**BM25 精确匹配的性价比高于向量检索**；而计算题最容易错在"算数"，所以引入代码执行；Token 压力则由"证据压缩"环节消化。
-
-## 学习路线
-
-```text
-① 跑 examples/rag_mini_demo.py    感受"检索"是什么（30 秒）
-② 读 docs/00-RAG入门.md           建立 chunk / BM25 / token 概念
-③ 读 docs/03 + docs/04            理解分块引擎与 BM25 原理
-④ 读 docs/05-Agent流水线.md       理解 LLM 如何规划检索与作答
-⑤ 配好 API Key 跑 scripts/run_agent.py，对照证据看真实效果
-⑥ 按 docs/07 复现，再动手改进
-```
 
 ## 文档索引
 
